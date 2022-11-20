@@ -10,6 +10,12 @@ const VideoContainer = styled.section`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    @media screen and (max-width: 48em) {
+      object-position: center 10%;
+    }
+    @media screen and (max-width: 30em) {
+      object-position: center 50%;
+    }
   }
 `;
 const DarkOverlay = styled.div`
@@ -34,17 +40,36 @@ const Title = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   color: ${(props) => props.theme.text};
-  div {
+  & span {
     display: flex;
     flex-direction: row;
-  }
-  h1 {
-    font-family: "Kaushan Script";
-    font-size: ${(props) => props.theme.fontBig};
-    text-shadow: 1px 1px 1px ${(props) => props.theme.body};
-    /* font-weight: 400; */
-    &:nth-child(5) {
-      margin-right: 30px;
+    & div {
+      display: flex;
+      flex-direction: row;
+      &:nth-child(1) {
+        margin-right: 30px;
+      }
+      & h1 {
+        font-family: "Kaushan Script";
+        font-size: ${(props) => props.theme.fontBig};
+        text-shadow: 1px 1px 1px ${(props) => props.theme.body};
+        /* font-weight: 400; */
+
+        @media screen and (max-width: 30em) {
+          font-size: calc(5rem + 8vw);
+          flex-direction: column;
+          line-height: 100px;
+        }
+      }
+    }
+    @media screen and (max-width: 30em) {
+      & div {
+        &:nth-child(1) {
+          margin-right: 0px;
+        }
+      }
+
+      flex-direction: column;
     }
   }
 
@@ -54,6 +79,10 @@ const Title = styled(motion.div)`
     text-shadow: 1px 1px 1px ${(props) => props.theme.body};
     font-weight: 500;
     text-transform: capitalize;
+    margin-top: 40px;
+    @media screen and (max-width: 30em) {
+      font-size: ${(props) => props.theme.fontmd};
+    }
   }
 `;
 const container = {
@@ -64,7 +93,7 @@ const container = {
     opacity: 1,
 
     transition: {
-      delayChildren: 2,
+      delayChildren: 5,
       staggerChildren: 0.3,
     },
   },
@@ -82,81 +111,85 @@ const CoverVideo = () => {
     <VideoContainer>
       <DarkOverlay />
       <Title variants={container} initial="hidden" animate="show">
-        <div>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.16"
-            data-scroll-speed="4"
-          >
-            S
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.13"
-            data-scroll-speed="4"
-          >
-            e
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.09"
-            data-scroll-speed="4"
-          >
-            o
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.06"
-            data-scroll-speed="4"
-          >
-            u
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.04"
-            data-scroll-speed="4"
-          >
-            l
-          </motion.h1>
-          {"   "}
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.13"
-            data-scroll-speed="4"
-          >
-            V
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.09"
-            data-scroll-speed="4"
-          >
-            i
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.06"
-            data-scroll-speed="4"
-          >
-            b
-          </motion.h1>
-          <motion.h1
-            variants={item}
-            data-scroll
-            data-scroll-delay="0.04"
-            data-scroll-speed="4"
-          >
-            e
-          </motion.h1>
-        </div>
+        <span>
+          <div>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.16"
+              data-scroll-speed="4"
+            >
+              S
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.13"
+              data-scroll-speed="4"
+            >
+              e
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.09"
+              data-scroll-speed="4"
+            >
+              o
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.06"
+              data-scroll-speed="4"
+            >
+              u
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.04"
+              data-scroll-speed="4"
+            >
+              l
+            </motion.h1>
+          </div>
+          <div>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.13"
+              data-scroll-speed="4"
+            >
+              V
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.09"
+              data-scroll-speed="4"
+            >
+              i
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.06"
+              data-scroll-speed="4"
+            >
+              b
+            </motion.h1>
+            <motion.h1
+              variants={item}
+              data-scroll
+              data-scroll-delay="0.04"
+              data-scroll-speed="4"
+            >
+              e
+            </motion.h1>
+          </div>
+        </span>
+
         <motion.h2
           variants={item}
           data-scroll

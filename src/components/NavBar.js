@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useLocomotiveScroll } from "react-locomotive-scroll";
 const NavContainner = styled.div`
   width: 100vw;
   z-index: 6;
@@ -27,6 +28,7 @@ const Text = styled.div`
     margin-left: 16px;
     padding: 3px 0px;
     text-transform: uppercase;
+    cursor: pointer;
     &::after {
       content: "";
       position: absolute;
@@ -58,38 +60,63 @@ const pathText = (duration) => {
       y: "0%",
 
       transition: {
-        duration: 1.5,
-        ease: "easeInOut",
+        ease: [0.075, 0.82, 0.165, 1],
+        duration: 2,
         delay: duration,
       },
     },
   };
 };
 const NavBar = () => {
+  const { scroll } = useLocomotiveScroll();
+  const handleScroll = (id) => {
+    let elem = document.querySelector(id);
+    scroll.scrollTo(elem, {
+      offset: "0",
+      duration: "2000",
+      easing: [0.25, 0.0, 0.35, 1.0],
+    });
+  };
   return (
     <NavContainner>
-      <Text>
-        <motion.div variants={pathText(1.4)} initial="hidden" animate="visible">
+      <Text
+        onClick={() => {
+          handleScroll("#home");
+        }}
+      >
+        <motion.div variants={pathText(5.4)} initial="hidden" animate="visible">
           Home
         </motion.div>
       </Text>
-      <Text>
+      <Text
+        onClick={() => {
+          handleScroll(".about");
+        }}
+      >
         <motion.div
-          variants={pathText(1.65)}
+          variants={pathText(5.65)}
           initial="hidden"
           animate="visible"
         >
           About
         </motion.div>
       </Text>
-      <Text>
-        <motion.div variants={pathText(1.9)} initial="hidden" animate="visible">
+      <Text
+        onClick={() => {
+          handleScroll("#shop");
+        }}
+      >
+        <motion.div variants={pathText(5.9)} initial="hidden" animate="visible">
           Shop
         </motion.div>
       </Text>
-      <Text>
+      <Text
+        onClick={() => {
+          handleScroll("#new-arrival");
+        }}
+      >
         <motion.div
-          variants={pathText(2.15)}
+          variants={pathText(6.15)}
           initial="hidden"
           animate="visible"
         >

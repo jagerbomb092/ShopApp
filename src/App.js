@@ -1,13 +1,18 @@
 import { AnimatePresence } from "framer-motion";
 import "locomotive-scroll/dist/locomotive-scroll.css";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 // import {LocomotiveScroll} from 'locomotive-scroll'
 import styled, { ThemeProvider } from "styled-components";
+import Loader from "./components/Loader";
 import Logo from "./components/Logo";
 import NavBar from "./components/NavBar";
+import ScrollTriggerProxy from "./components/ScrollTriggerProxy";
 import About from "./sections/About";
+import Banner from "./sections/Banner";
+import Footer from "./sections/Footer";
 import Home from "./sections/Home";
+import NewArrival from "./sections/NewArrival";
 import Shop from "./sections/Shop";
 import GlobalStyles from "./styles/GlobalStyles";
 import { dark } from "./styles/Themes";
@@ -27,9 +32,21 @@ const MenuWrap = styled.div`
   &.hide {
     transform: translateY(-100%);
   }
+  @media screen and (max-width: 48em) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 function App() {
   const containerRef = useRef(null);
+
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+  });
 
   return (
     <>
@@ -39,6 +56,12 @@ function App() {
         <LocomotiveScrollProvider
           options={{
             smooth: true,
+            smartphone: {
+              smooth: true,
+            },
+            tablet: {
+              smooth: true,
+            },
             // ... all available Locomotive Scroll instance options
           }}
           watch={
@@ -55,10 +78,14 @@ function App() {
           // onUpdate={(e) => console.log(e)} // Will trigger on
           containerRef={containerRef}
         >
+          <AnimatePresence>{loaded ? null : <Loader />}</AnimatePresence>
+
+          <ScrollTriggerProxy />
           <AnimatePresence>
             <main
               data-scroll-container
               ref={containerRef}
+              className="App"
               // onprogress={(e) => {
               //   console.log(e);
               // }}
@@ -70,6 +97,9 @@ function App() {
               <Home />
               <About />
               <Shop />
+              <Banner />
+              <NewArrival />
+              <Footer />
             </main>
           </AnimatePresence>
         </LocomotiveScrollProvider>

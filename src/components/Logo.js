@@ -44,6 +44,7 @@ const pathVariants = {
     pathLength: 1,
     transition: {
       duration: 2,
+      delay: 5,
       ease: "easeInOut",
     },
   },
@@ -56,9 +57,9 @@ const pathText = {
     y: "0%",
 
     transition: {
-      duration: 1.5,
+      duration: 5,
       ease: "easeInOut",
-      delay: 1.4,
+      delay: 2,
     },
   },
 };
@@ -87,7 +88,7 @@ const Logo = () => {
         </svg>
         <Text>
           <motion.div variants={pathText} initial="hidden" animate="visible">
-            Seoul Vibe
+            Seoul Vibe Studio
           </motion.div>
         </Text>
       </Link>

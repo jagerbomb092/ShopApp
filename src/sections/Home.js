@@ -11,7 +11,7 @@ const Section = styled.section`
 
 const Home = () => {
   return (
-    <Section>
+    <Section id="home">
       <CoverVideo />
     </Section>
   );

@@ -9,6 +9,13 @@ const Section = styled.section`
   width: 80vw;
   /* overflow: hidden; */
   display: flex;
+  margin: 0 auto;
+  @media screen and (max-width: 48em) {
+    width: 90vw;
+  }
+  @media screen and (max-width: 30em) {
+    width: 100vw;
+  }
 `;
 const Wrap = styled.div`
   /* overflow: hidden; */
@@ -20,17 +27,46 @@ const Wrap = styled.div`
   margin-top: 50px;
   padding-right: 10px;
   padding-left: 5%;
+  @media screen and (max-width: 64em) {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 auto;
+    padding: 2rem;
+    backdrop-filter: blur(2px);
+    background: ${(props) => `rgba(${props.theme.textRgba},0.4)`};
+    border-radius: 20px;
+  }
 `;
 const Title = styled.div`
   /* overflow: hidden; */
 
-  font-size: ${(props) => props.theme.fontBig} !important;
+  font-size: 8em !important;
   font-family: "Kaushan Script";
+  @media screen and (max-width: 64em) {
+    font-size: calc(5rem - 5vw) !important;
+  }
+  @media screen and (max-width: 48em) {
+    font-size: calc(5rem - 10vw) !important;
+  }
 `;
 const Left = styled.div`
   font-size: ${(props) => props.theme.fontlg};
   font-weight: 300;
   z-index: 5;
+  @media screen and (max-width: 64em) {
+    font-weight: 600;
+  }
+  @media screen and (max-width: 48em) {
+    font-size: ${(props) => props.theme.fontmd};
+  }
+  @media screen and (max-width: 30em) {
+    font-size: ${(props) => props.theme.fontsm};
+    /* width: 70%; */
+  }
+
   /* margin-top: 20%; */
 `;
 const Right = styled.div`
@@ -53,21 +89,37 @@ const Right = styled.div`
     left: 80%;
     bottom: 30%;
   }
+  @media screen and (max-width: 64em) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    & img {
+      object-fit: cover;
+      height: 100vh;
+    }
+    & .small-img-1 {
+      width: 30%;
+      height: auto;
+      left: 5%;
+      bottom: 10%;
+    }
+    & .small-img-2 {
+      width: 30%;
+      height: auto;
+      left: 60%;
+      bottom: 20%;
+    }
+  }
 `;
 
 const About = () => {
   return (
-    <Section id="fixed-target">
-      <Wrap>
-        <Title
-          data-scroll
-          data-scroll-sticky
-          data-scroll-target="#fixed-target"
-          data-scroll-speed="-2"
-        >
-          About us
-        </Title>
-        <Left data-scroll data-scroll-sticky data-scroll-target="#fixed-target">
+    <Section id="fixed-target" className="about">
+      <Wrap data-scroll data-scroll-sticky data-scroll-target="#fixed-target">
+        <Title>About us</Title>
+        <Left>
           We're fashion studio based in california. We create unique designs
           that will blow your mind. We also design unique jewellary pieces.
           Fashion is an ART that can not be grasped by everyone.
